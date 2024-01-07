@@ -1,0 +1,162 @@
+hello
+
+Hi
+Hi
+A
+i hope you went through the requirement of project
+yes
+
+A
+we need it in python or java.
+
+are you confident about this project?
+
+I have some questions.
+
+A
+feel free to ask
+
+you mean applying font files to svg
+
+A
+Look i have SVGs fo 26 Alphabet characters,i want to make a font from those SVG files
+
+can you send me one SVG file
+
+A
+2649fcae7fd9a0e7911ada3065858c3a.svg2649fcae7fd9a0e7911ada3065858c3a.svg
+
+ok but I have one question
+
+let's say you have 26 svgs of each alphabet
+
+how can we identify that its for specific alphabet
+
+in the program
+
+a.svg
+
+b.svg?
+
+A
+yes
+
+we will name the fiel respectively
+
+you only have to develop a scripts that takes input as SVGs and Gives Output as font
+
+https://glyphter.com/
+
+reference
+
+ok
+
+Hi
+
+I have checked everything
+
+I think I can make it in php
+
+it will upload a folder
+
+and generate ttf and download
+
+A
+okay
+
+https://github.com/opentypejs/opentype.js/
+
+here has a library for creating font
+
+A
+i've worked on it but didn't get desired results
+
+may be i did something wrong
+
+you please try for that svg i sent then if it works we will have a deal
+
+you mean I can use opentype.js
+
+and try to make with svg?
+
+A
+yes coz i 've worked with it earlier
+
+and didn't work
+
+ok
+
+A
+if you program works,i will pay you right away
+
+any update ?
+
+Please a moment.
+
+I am on it.
+
+I have done for A
+
+can you send me for other alphabets
+
+and the svg must be some sized
+
+2023-12-31 05-19-22.mp4
+
+A
+sorry for replying late
+
+sending you the rest of fonts
+sbgs
+
+ok
+A
+i've a query
+
+the script you developed is using library and is compatible to be used on server side?
+
+try this svg please
+
+output9999.svgoutput9999.svg
+
+which programming language have you used?
+
+ad5941525e4d3803aa24ed9f46387820.svgad5941525e4d3803aa24ed9f46387820.svg
+
+5525c44575362d62df43a381aeebb41a.svg5525c44575362d62df43a381aeebb41a.svg
+
+a2f7a4f49938a0fdcc68ebc3a9827bf2.svga2f7a4f49938a0fdcc68ebc3a9827bf2.svg
+
+c8bf41a584025c035606d24adcc5cac4.svgc8bf41a584025c035606d24adcc5cac4.svg
+
+c75e003a5d82a74863bec0d11d8610c6.svgc75e003a5d82a74863bec0d11d8610c6.svg
+
+4c531e1d4a86c5e3bf74a37a6ab076a1.svg4c531e1d4a86c5e3bf74a37a6ab076a1.svg
+
+try with these svgs
+
+Abhay D.
+@aad99bxp
+the script you developed is using library… more
+.
+
+Abhay D.
+@aad99bxp
+.
+yes
+
+Abhay D.
+@aad99bxp
+which programming language have you used?
+javascript php
+
+A
+ok can we have a deal ?
+
+ok
+
+A
+for 1500 INR?
+
+TODAY
+ok
