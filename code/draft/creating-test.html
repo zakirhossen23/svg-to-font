@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>OpenType writing</title>
+<style>
+    body {
+        font: 13px Helvetica, arial, freesans, sans-serif;
+        line-height: 1.4;
+        color: #333;
+        margin: 0 0 50px 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 940px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #glyphs {
+        clear: both;
+    }
+
+    .wrapper {
+        float: left;
+        margin: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .wrapper span {
+        text-align: center;
+        background: #ddd;
+        display: block;
+    }
+</style>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="956" height="1280">
+    <path
+        d="M453.9920272386687,619.2536332115887C475.7074823612335,601.5654079481178,495.7646663653479,582.6927033143252,515.190128038624,562.4775887275011C520.4018372680396,559.8717341127933,525.6135464974551,557.2658794980856,530.9831863095802,554.581059592023C594.7871417242434,437.47553251288264,603.5522890646241,322.50206830032147,586.258890257927,191.3407193600301C578.0464999570297,171.91525768675393,578.0464999570297,171.91525768675393,570.4658319869708,159.7546028181177C565.2541227575553,159.7546028181177,560.0424135281397,159.7546028181177,554.6727737160146,159.7546028181177C554.0410513851764,151.4632472258657,553.3303637629833,143.1718916336136,552.698641432145,134.5646748759425C544.7231470053122,93.89754982823024,531.456978057709,76.6041510215332,497.7387986492174,52.59870244967976C426.4331405558501,7.193659920680716,358.2071288253192,-9.862843011952009,274.0301282411226,5.535388802230273C207.69928350310653,22.907752900282162,152.10771838934068,55.836279395225915,112.46714212924053,112.37542800524915C73.61621878268824,194.65726159693105,38.6345947125202,288.5469930177657,66.58830785211268,379.357078075764C71.0893294593352,390.4911841567881,75.8272469406221,401.54632494645745,80.88102558732811,412.44353515341726C83.2499843279715,418.05007083960675,85.69790835996974,423.6566065257962,88.14583239196799,429.4210727946952C111.91438508975705,481.6960956715603,143.9742933797982,511.7029063863771,193.95932280737458,538.6300707383574C214.64822914232727,551.1855520637675,229.8095650824452,568.8737773272386,246.70813743236837,586.1671761339356C258.39500055287596,596.2747334273477,270.2397942560931,606.1453948466952,282.24251854201987,615.7791603919785C288.0069848109189,620.5170778732654,293.7714510798179,625.1760300631975,299.7728132227812,629.9929128358391C350.23163439848634,662.131786417235,407.718366504767,653.3666390768543,453.9920272386687,619.253633211589C453.9920272386687,619.253633211589,453.9920272386687,619.253633211589,453.9920272386687,619.253633211589M373.0526036000181,546.6845304565451C373.0526036000181,541.4728212271295,373.0526036000181,536.261111997714,373.0526036000181,530.8914721855889C378.26431282943366,528.2856175708811,383.4760220588492,525.6797629561734,388.8456618709743,522.9949430501108C383.4760220588492,498.43673743877383,375.1057011752424,476.80024760756385,364.6822827164113,453.90031311467726C361.8395322276392,447.58308980629477,358.9178164475123,441.2658664979123,355.99610066738535,434.79071260682025C353.78507250945154,430.0527951255334,351.6530096428724,425.2359123528918,349.36301619358375,420.34006428889535C312.4072598395462,425.3148776442465,312.4072598395462,425.3148776442465,299.5359173487169,440.0813871275906C277.58356635208776,459.58581409222154,251.2881243309457,460.6123628798337,223.01855002593405,459.82270996628586C193.56449635060073,449.3992915074548,185.5890019237678,440.00242183623584,170.743527149069,412.4435351534172C155.89805237437014,376.04053583886315,156.68770528791794,340.743050603276,157.398392910111,301.8921272567237C157.3194276187562,295.1011122002125,157.3194276187562,288.3100971437014,157.3194276187562,281.28218621312584C157.63528878417537,240.45713058270405,162.452171556817,206.2651594260838,175.63937521306542,167.6511319535959C180.85108444248095,167.6511319535959,186.06279367189654,167.6511319535959,191.43243348402166,167.6511319535959C193.4065657678912,162.83424918095426,195.3806980517607,157.93840111695783,197.433795626985,152.96358776160662C216.38546555213244,120.27195714072724,255.63121535545866,108.82198989428394,290.6128394256267,98.5565020181624C349.4419814849386,92.55513987519907,400.7694208655463,96.58236973429291,452.0178949547992,128.16848627620533C476.97092702291,157.78047053424825,496.1594928221218,189.36658707616067,515.1901280386242,222.92683590194264C517.7959826533319,225.5326905166504,520.4018372680396,228.13854513135817,523.0866571741021,230.82336503742073C526.0083729542291,258.38225172023937,526.0083729542291,286.09906898576753,526.5611299937125,313.7369209599409C526.8769911591316,321.3965542213546,527.2718176159055,329.0561874827684,527.6666440726794,336.9527166182465C528.5352622775821,395.7818586775584,513.9266833769476,431.0003786217908,475.7074823612336,475.61576823724204C448.62238742654364,502.0691408410937,443.17378232306373,507.2018847791545,404.63872014193055,507.2018847791545C403.84906722838275,512.2556634258605,402.98044902348016,517.3094420725665,402.19079610993236,522.5211513019821C400.3745944087724,527.8907911141071,398.5583927076124,533.2604309262322,396.74219100645246,538.788001321067C388.92462716232916,541.3938559357747,381.1070633182058,543.9997105504825,373.05260360001813,546.684530456545C373.05260360001813,546.684530456545,373.05260360001813,546.684530456545,373.05260360001813,546.684530456545"
+        fill="#000000" />
+</svg>
+<form class="container" name="demo">
+    <h1><output name="fontFamilyName"></output></h1>
+
+    <p>This font is generated dynamically in the browser.</p>
+    <a id="download-font" download="generated.otf">Download Font</button>
+
+    <div id="glyphs"></div>
+</form>
+
+<script src="./js/opentype.module.js"></script>
+<script src="./js/raphaelv2.1.1.min.js"></script>
+<script src="./js/jquery-latest.min.js"></script>
+<script>
+    let GLOBALS={
+        fontOptions:{
+            autoResize:true,
+            emSquare:700
+        }
+    }
+    function getPath(e, t) {
+        if ($(e).is("line"))
+            return userModifications(e, new Line(e).convertLineToPath(), t);
+        if ($(e).is("path"))
+            return userModifications(e, $(e).attr("d"), t);
+        if ($(e).is("polygon") || $(e).is("polyline"))
+            return userModifications(e, convertPolyToPath(e), t);
+        if ($(e).is("rect"))
+            return userModifications(e, convertRectToPath(e), t);
+        if ($(e).is("circle") || $(e).is("ellipse"))
+            return userModifications(e, convertCircleToPath(e), t)
+    }
+    function Line(e) {
+        this.line = e,
+            this.strokeWidth = e.getAttribute("stroke-width"),
+            this.x1 = parseFloat(e.getAttribute("x1")),
+            this.x2 = parseFloat(e.getAttribute("x2")),
+            this.y1 = parseFloat(e.getAttribute("y1")),
+            this.y2 = parseFloat(e.getAttribute("y2"))
+    }
+    function convertPolyToPath(e) {
+        var t, i = e.getAttribute("points").split(/\s+|,/), a = "M" + i.shift() + "," + i.shift() + "L" + i.join(" ");
+        return "polygon" == e.tagName && (a += "z"),
+            a
+    }
+    function convertCircleToPath(e) {
+        var t = e.getAttribute("cx")
+            , i = e.getAttribute("cy")
+            , a = e.getAttribute("rx")
+            , n = e.getAttribute("ry")
+            , o = e.getAttribute("r");
+        o > 0 && (a = o,
+            n = o);
+        var r = "M" + (t - a) + "," + i;
+        return r += "a" + a + "," + n + " 0 1,0 " + 2 * a + ",0",
+            r += "a" + a + "," + n + " 0 1,0 " + -2 * a + ",0"
+    }
+    function convertRectToPath(e) {
+        var t = e.ownerSVGElement.namespaceURI
+            , i = document.createElementNS(t, "path")
+            , a = e.getAttribute("height")
+            , n = e.getAttribute("width")
+            , o = parseFloat(e.getAttribute("x"))
+            , r = parseFloat(e.getAttribute("y"))
+            , s = e.getAttribute("rx")
+            , l = e.getAttribute("ry")
+            , c = a - 2 * (null != l ? l : 0)
+            , p = n - 2 * (null != s ? s : 0)
+            , i = "M" + o + "," + (r + (null != l ? l : 0)) + "v" + c + (null != s ? "a" + s + "," + l + " 0 0 0 " + s + "," + l : "") + "h" + p + (null != s ? "a" + s + "," + l + " 0 0 0 " + (s - l) : "") + "v" + -c + (null != s ? "a" + s + "," + l + " 0 0 0 " + -s + "," + -l : "") + "h" + -p + (null != s ? "a" + s + "," + l + " 0 0 0 " + -s + "," + l : "");
+        return i
+    }
+    function roundToDecimal(e, t) {
+        var i = Math.pow(10, t);
+        return Math.round(e * i) / i
+    }
+    function userModifications(e, t, i) {
+        // var a = e.getAttribute("class") || ""
+        //     , n = parseFloat(e.getAttribute("data-left")) || 0
+        //     , o = parseFloat(e.getAttribute("data-top")) || 0
+        //     , r = parseInt(e.getAttribute("data-rotate")) || 0
+        //     , s = e.getAttribute("data-flip") || ""
+        //     , l = e.getAttribute("data-scaleX") || 1
+        //     , c = e.getAttribute("data-scaleY") || 1
+            let p = "";
+       
+        return t = Raphael.transformPath(t, p)
+    }
+    
+        function createPath(e) {
+            var t = ""
+                , i = 0;
+            if ($(e).find("svg").find("*").each(function (e, a) {
+                var n = getPath(a);
+                $.trim(n).length > 0 && (t += " " + n,
+                    i++)
+            }),
+                "" != (t = $.trim(t))) {
+                if (GLOBALS.fontOptions.autoResize) {
+                    t = Raphael.pathToRelative(t);
+                    var a = Raphael.pathBBox(t)
+                        , n = a.x2 - a.x
+                        , o = a.y2 - a.y
+                        , r = GLOBALS.fontOptions.emSquare / n
+                        , s = GLOBALS.fontOptions.emSquare / o
+                        , l = s < r ? s : r;
+                    console.log(l),
+                        t = Raphael.transformPath(t, "s" + l + ",-" + l);
+                    var c = Raphael.pathBBox(t)
+                        , p = -c.x + (GLOBALS.fontOptions.emSquare - parseInt(c.width)) / 2
+                        , d = -c.y + (GLOBALS.fontOptions.emSquare - parseInt(c.height)) / 2;
+                    t = Raphael.transformPath(t, "T" + p + "," + d)
+                } else
+                    t = Raphael.transformPath(t, "s1,-1");
+                // (t = userModifications($(e).find("svg")[0], t)).forEach(function (e, i) {
+                //     e.forEach(function (e, a) {
+                //         if (isNaN(e))
+                //             return !0;
+                //         t[i][a] = parseFloat(e.toFixed(3))
+                //     })
+                // })
+            }
+            return t
+        }
+</script>
+
+<script type="module">
+    function hexDump(bytes) {
+        var hexString = bytes.map(function(v) {
+            var h = v.toString(16);
+            return h.length === 1 ? '0' + h : h;
+        });
+        return hexString.join(' ').toUpperCase();
+    }
+
+    // Create a canvas and adds it to the document.
+    // Returns the 2d drawing context.
+    function createGlyphCanvas(glyph, size) {
+        var canvasId, html, glyphsDiv, wrap, canvas, ctx;
+        canvasId = 'c' + glyph.index;
+        html = '<div class="wrapper" style="width:' + size + 'px"><canvas id="' + canvasId + '" width="' + size + '" height="' + size + '"></canvas><span>' + glyph.index + '</span></div>';
+        glyphsDiv = document.getElementById('glyphs');
+        wrap = document.createElement('div');
+        wrap.innerHTML = html;
+        glyphsDiv.appendChild(wrap);
+        canvas = document.getElementById(canvasId);
+        ctx = canvas.getContext('2d');
+        return ctx;
+    }
+
+    var notdefPath = new opentype.Path();
+    notdefPath.moveTo(100, 0);
+    notdefPath.lineTo(100, 700);
+    notdefPath.lineTo(600, 700);
+    notdefPath.lineTo(600, 0);
+    notdefPath.moveTo(200, 100);
+    notdefPath.lineTo(500, 100);
+    notdefPath.lineTo(500, 600);
+    notdefPath.lineTo(200, 600);
+    var notdefGlyph = new opentype.Glyph({
+        name: '.notdef',
+        unicode: 0,
+        advanceWidth: 650,
+        path: notdefPath
+    });
+
+    var aPath = new opentype.Path();
+    aPath.moveTo(100, 0);
+    aPath.lineTo(100, 700);
+    aPath.lineTo(600, 700);
+    aPath.lineTo(600, 0);
+    aPath.lineTo(500, 0);
+    aPath.lineTo(500, 300);
+    aPath.lineTo(200, 300);
+    aPath.lineTo(200, 0);
+    aPath.moveTo(200, 400);
+    aPath.lineTo(500, 400);
+    aPath.lineTo(500, 600);
+    aPath.lineTo(200, 600);
+  
+    // aPath.fromSVG(document.querySelector("body path"))
+    var aGlyph = new opentype.Glyph({
+        name: 'A',
+        unicode: 65,
+        advanceWidth: 650,
+        path: aPath
+    });
+
+    var bPath = new opentype.Path();
+    bPath.moveTo(100, 0);
+    bPath.lineTo(100, 700);
+    bPath.lineTo(500, 700);
+    bPath.lineTo(500, 400);
+    bPath.lineTo(600, 400);
+    bPath.lineTo(600, 0);
+    bPath.moveTo(200, 400);
+    bPath.lineTo(400, 400);
+    bPath.lineTo(400, 600);
+    bPath.lineTo(200, 600);
+    bPath.moveTo(200, 100);
+    bPath.lineTo(500, 100);
+    bPath.lineTo(500, 300);
+    bPath.lineTo(200, 300);
+    var bGlyph = new opentype.Glyph({
+        name: 'B',
+        unicode: 66,
+        advanceWidth: 650,
+        path: bPath
+    });
+    var glyphs = [notdefGlyph, aGlyph, bGlyph];
+    var font = new opentype.Font({familyName: 'OpenTypeSans', styleName: 'Medium', unitsPerEm: 1000, ascender: 800, descender: -200, glyphs: glyphs});
+    var buffer = font.toArrayBuffer();
+    var font2 = opentype.parse(buffer);
+
+    
+    for (var i = 0; i < font2.glyphs.length; i++) {
+        var glyph = font2.glyphs.get(i);
+        var ctx = createGlyphCanvas(glyph, 150);
+        var x = 50;
+        var y = 120;
+        var fontSize = 72;
+        glyph.draw(ctx, x, y, fontSize);
+        glyph.drawPoints(ctx, x, y, fontSize);
+        glyph.drawMetrics(ctx, x, y, fontSize);
+    }
+    // font.download()
+
+</script>
