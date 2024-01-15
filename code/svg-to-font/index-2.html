@@ -194,53 +194,81 @@
 
 
     function render() {
-        for (let i = 0; i < allFiles.length; i++) {
-            downloadBTN.removeAttribute("disabled")
+      
+        generateFont()
 
-            let old_html = $("#previewItem")[0].innerHTML;
-            const element = allFiles[i];
-            $("#previewItem").html(old_html + "<div class=\"svgs\"><svg><path d=\"" + element.path + "\"/><span class=\"alpha\"/>" + element.name + "</span>")
-        }
-
-    }
-
-    async function download() {
-
-        const notdefGlyph = new opentype.Glyph({
-            name: '.notdef',
-            unicode: 0,
-            advanceWidth: 650,
-            path: new opentype.Path()
-        });
-        const glyphs = [notdefGlyph];
-        for (let i = 0; i < allFiles.length; i++) {
-            const Alphabet = allFiles[i];
-            const elmPath = new Path();
-            elmPath.fromSVG(Alphabet.path)
-            // more drawing instructions...
-            const elmGlyph = new opentype.Glyph({
-                name: Alphabet.name,
-                unicode: Alphabet.name.charCodeAt(),
-                advanceWidth: 100,
-                path: elmPath
-            });
-            glyphs.push(elmGlyph)
-        }
-
-
-
-        const font = new opentype.Font({
-            familyName: 'OpenTypeSans',
-            styleName: 'Medium',
-            unitsPerEm: 200,
-            ascender: 100,
-            descender: -100,
-            glyphs: glyphs
-        });
-        font.download();
     }
 
 </script>
+<script>
+
+function convertPathsToOnePath(svgElement) {
+  // Use Snap.svg to manipulate SVG paths
+  const paper = Snap(svgElement);
+  const paths = paper.selectAll('path');
+
+  // Combine multiple paths into a single path
+  const combinedPath = paths.items.reduce((combined, path) => {
+    const pathData = Snap.path.toRelative(path);
+    combined += pathData;
+    return combined;
+  }, '');
+
+  return combinedPath;
+}
+
+
+    function generateFont() {
+  const svgFileInput = document.getElementById('upload-svg');
+
+  // Loop through uploaded files
+  for (const file of svgFileInput.files) {
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+      const svgData = event.target.result;
+      
+      var newElm = document.createElement("svg")
+    newElm.innerHTML = svgData;
+    let file_name = file.name.replaceAll("_", "").replaceAll(".svg", "");
+
+    const combinedPathData = convertPathsToOnePath(newElm);
+    const elmPath = new Path();
+            elmPath.fromSVG(combinedPathData.replaceAll("r",""))
+    const glyph =  new opentype.Glyph({
+        name: file_name,
+        unicode:file_name.charCodeAt(0), // Use the Unicode of the first character
+                advanceWidth: 100,
+        path: elmPath,
+      });
+      // Create a new font for each letter (adjust Unicode accordingly)
+      const font = new opentype.Font({
+        familyName: 'DynamicFont',
+        styleName: 'Regular',
+        unitsPerEm: 1000,
+            ascender: 100,
+            descender: -100,
+            
+            glyphs:[glyph]
+      });
+
+      
+
+      // Display the generated font
+      const fontCanvas = document.createElement('canvas');
+      fontCanvas.width = 650; // Adjust the size as needed
+      fontCanvas.height = 650;
+      const ctx = fontCanvas.getContext('2d');
+      glyph.draw(ctx, 10, 40, 40); // Adjust positioning and size
+
+      $("#previewItem")[0].appendChild(fontCanvas);
+    };
+
+    reader.readAsText(file);
+  }
+}
+</script>
+
 <style>
     #previewItem {
         display: flex;
