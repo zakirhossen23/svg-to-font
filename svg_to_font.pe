@@ -1,0 +1,42 @@
+#!/usr/bin/fontforge
+# Open the SVG file
+Open($1)
+
+# Set up font properties
+SetFontNames("YourDynamicFont", "Your Dynamic Font")
+SetFontWeight(80)
+SetFontWidth(1000)
+
+# Function to handle resizing and moving glyphs
+Define resize_and_move_glyph()
+   ScaleToEm(1000)
+   (_, _, width, height) = FontInfo()
+   ScaleToEm(1000 * 0.8 / width, 1000 * 0.8 / height)
+   Move(100, 0)
+EndDefine
+
+# Process each glyph in the SVG
+SelectAll()
+CounterClockwise()
+loop
+   current_glyph = $startchar
+   glyph_name = GlyphInfo(current_glyph, 8)
+   if (IsLower(glyph_name))
+      # For smaller alphabet, add "_" prefix
+      RenameGlyph(current_glyph, "_" + glyph_name)
+   else
+      # For capital alphabet, use the letter itself
+      RenameGlyph(current_glyph, glyph_name)
+   endif
+   resize_and_move_glyph()
+   Clear()
+   if (current_glyph == $endchar)
+      ExitLoop
+   endif
+EndLoop
+
+# Generate the font file
+Generate($2)
+
+# Close the font
+Close()
