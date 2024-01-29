@@ -1,9 +1,6 @@
 {
     "version": 2,
-    "builds": [{ "src": "index.js", "use": "@vercel/node" }],
-    "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
-    "scripts": {
-        "build": "npm install && npx puppeteer@21.10.0 browsers install"
-      }
+    "builds": [{ "src": "build.sh", "use": "@now/node" }],
+    "routes": [{ "src": "/(.*)", "dest": "/index.js" }]
   }
   
