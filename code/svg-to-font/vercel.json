@@ -6,12 +6,6 @@
             "use": "@now/node"
         }
     ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/index.js"
-        }
-    ],
     "functions": {
         "api": {
             "runtime": "vercel-node@2.6.1",
