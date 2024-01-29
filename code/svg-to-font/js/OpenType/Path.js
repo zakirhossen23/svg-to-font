@@ -1,5 +1,10 @@
 // Geometric objects
-
+let NewBoundingBox = null;
+if (typeof BoundingBox == 'undefined'){
+    NewBoundingBox = require('./bbox')
+}else{
+    NewBoundingBox = BoundingBox;
+}
 /**
  * A bézier path containing a set of path commands similar to a SVG path.
  * Paths can be drawn on a context using `draw`.
@@ -435,7 +440,7 @@ Path.prototype.close = Path.prototype.closePath = function() {
 Path.prototype.extend = function(pathOrCommands) {
     if (pathOrCommands.commands) {
         pathOrCommands = pathOrCommands.commands;
-    } else if (pathOrCommands instanceof BoundingBox) {
+    } else if (pathOrCommands instanceof NewBoundingBox) {
         const box = pathOrCommands;
         this.moveTo(box.x1, box.y1);
         this.lineTo(box.x2, box.y1);
@@ -453,7 +458,7 @@ Path.prototype.extend = function(pathOrCommands) {
  * @returns {opentype.BoundingBox}
  */
 Path.prototype.getBoundingBox = function() {
-    const box = new BoundingBox();
+    const box = new NewBoundingBox();
 
     let startX = 0;
     let startY = 0;
@@ -673,3 +678,6 @@ Path.prototype.toDOMElement = function(options, pathData) {
 
     return newPath;
 };
+if (typeof module != 'undefined'){
+    module.exports = Path;
+}

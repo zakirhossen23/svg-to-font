@@ -154,3 +154,6 @@ BoundingBox.prototype.addQuad = function(x0, y0, x1, y1, x, y) {
     const cp2y = cp1y + 1 / 3 * (y - y0);
     this.addBezier(x0, y0, cp1x, cp1y, cp2x, cp2y, x, y);
 };
+if (typeof module != 'undefined'){
+    module.exports = BoundingBox;
+}

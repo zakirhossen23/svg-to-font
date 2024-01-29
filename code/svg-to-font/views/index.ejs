@@ -1,0 +1,167 @@
+<html>
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+</head>
+
+<body>
+
+
+    <div class="container mt-5">
+        <div>
+            <div>
+                <form class="align-items-center d-flex flex-column jumbotron">
+                    <div class="col-7">
+                        <div>smaller letter must have a underscore prefix. </div><br>
+                        <div>smaller alphabet: _a.svg </div><br>
+                        <div>capital alphabet: A.svg </div><br>
+
+                        <div class="form-group">
+                            <label for="font_name">Font Name</label>
+                            <input name="font_name" class="form-control" required="" placeholder="YourCustomFont">
+                        </div>
+                        <div class="form-group">
+                            <label for="font_style">Font Style</label>
+                            <input name="font_style" class="form-control" required="" placeholder="Regular">
+                        </div>
+                        <div class="form-group">
+                            <label>Upload File:</label>
+                            <input type="file" class="form-control" id="upload-svg" multiple="">
+                        </div>
+                    </div>
+
+                    <div id="previewItem">
+
+                    </div>
+                    <div>
+                        <button type="submit" class="mt-5 btn-primary btn" id="downloadBTN">Download</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/opentype.js"></script>
+<script src="./js/raphaelv2.1.1.min.js"></script>
+<script src="/js/OpenType/bbox.js"></script>
+<script src="/js/OpenType/Path.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+    let allFiles = []
+    let downloadBTN = $("#downloadBTN")[0]
+    $("#upload-svg").on("change", function (e) {
+        allFiles = [];
+        for (let i = 0; i < e.target.files.length; i++) {
+            const file = e.target.files[i];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var contents = e.target.result;
+
+                    if (file.type.indexOf('svg') > 0) {
+                        var newElm = document.createElement("svg")
+                        newElm.innerHTML = contents;
+                        let file_name = file.name.replaceAll("_", "").replaceAll(".svg", "");
+                        let path = createPath(newElm).toString();
+                        allFiles.push({
+                            name: file_name,
+                            path: path
+                        })
+                    } else {
+                    }
+
+                }
+                reader.readAsText(file);
+            }
+        }
+        setTimeout(() => {
+            render()
+        }, 800)
+    });
+
+    $("form").on("submit", (e) => {
+        e.preventDefault(); 
+        const formData = new FormData(e.target); const dataArray = {};
+        formData.forEach((value, key) => {
+            dataArray[key] = value;
+        }); download(dataArray)
+    })
+
+    function render() {
+        for (let i = 0; i < allFiles.length; i++) {
+            downloadBTN.removeAttribute("disabled")
+
+            let old_html = $("#previewItem")[0].innerHTML;
+            const element = allFiles[i];
+            $("#previewItem").html(old_html + "<div class=\"svgs\"><svg viewBox=\"0 0 650 650\"><path d=\"" + element.path + "\"/><span class=\"alpha\"/>" + element.name + "</span>")
+        }
+
+    }
+
+    async function download(data) {
+        const notdefGlyph = new opentype.Glyph({
+            name: '.notdef',
+            unicode: 0,
+            advanceWidth: 650,
+            path: new opentype.Path()
+        });
+        const glyphs = [notdefGlyph];
+        for (let i = 0; i < allFiles.length; i++) {
+            const Alphabet = allFiles[i];
+            const elmPath = new Path();
+            elmPath.fromSVG(Alphabet.path)
+            // more drawing instructions...
+            const elmGlyph = new opentype.Glyph({
+                name: Alphabet.name,
+                unicode: Alphabet.name.charCodeAt(),
+                advanceWidth: 650,
+                path: elmPath
+            });
+            glyphs.push(elmGlyph)
+        }
+
+
+
+        const font = new opentype.Font({
+            familyName: data.font_name,
+            styleName: data.font_style,
+            unitsPerEm: 1000,
+            ascender: 800,
+            descender: -800,
+            glyphs: glyphs
+        });
+        font.download();
+    }
+
+</script>
+<style>
+    #previewItem {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .svgs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+        margin-bottom: 2rem;
+    }
+
+    svg {
+        width: 6rem;
+        height: 6rem;
+        border: 1px solid;
+        padding: 2rem;
+    }
+</style>
+
+</html>
