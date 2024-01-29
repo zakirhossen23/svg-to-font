@@ -6,12 +6,12 @@
             "use": "@now/node"
         }
     ],
-    "functions": {
-        "api": {
-            "runtime": "vercel-node@2.6.1",
-            "memory": 1024
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/index.js"
         }
-    },
+    ],
     "env": {
         "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true"
     }
