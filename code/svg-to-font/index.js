@@ -10,6 +10,7 @@ const app = express()
 const port = 3000
 app.set('view engine', 'ejs'); // Set EJS as the view engine
 app.use(express.json());
+app.set('views', path.join(__dirname, 'views'));
 
 app.use('/generated',express.static('generated'))
 app.use('/js',express.static('js'))
