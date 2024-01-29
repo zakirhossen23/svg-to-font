@@ -13,8 +13,8 @@ app.set('view engine', 'ejs'); // Set EJS as the view engine
 app.use(express.json());
 app.set('views', path.join(__dirname, 'views'));
 
-app.use('/generated',express.static('generated'))
-app.use('/js',express.static('js'))
+app.use('/generated', express.static('generated'))
+app.use('/js', express.static('js'))
 app.get('/', (req, res) => {
   res.render('index'); // Renders 'views/index.ejs'
 });
@@ -24,18 +24,18 @@ app.post('/generate', async (req, res) => {
 
   // Check if font_name, font_style, and svgs are provided
   if (!font_name || !font_style || !svgs || !Array.isArray(svgs) || svgs.length === 0) {
-      return res.status(400).json({ error: 'font_name, font_style, and svgs are required.' });
+    return res.status(400).json({ error: 'font_name, font_style, and svgs are required.' });
   }
 
   // Validate each SVG object in the svgs array
   for (const svg of svgs) {
-      const { name, code } = svg;
-      if (!name || !code) {
-          return res.status(400).json({ error: 'All svgs must have a name and code.' });
-      }
+    const { name, code } = svg;
+    if (!name || !code) {
+      return res.status(400).json({ error: 'All svgs must have a name and code.' });
+    }
   }
 
-  const browser = await puppeteer.launch({  executablePath: './bin/chrome', headless: "new", args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const browser = await puppeteer.launch({ executablePath: './bin/chrome', headless: "new", args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
 
   const notdefGlyph = new opentype.Glyph({
@@ -66,7 +66,7 @@ app.post('/generate', async (req, res) => {
       return (path)
 
     }, element);
- 
+
     allFiles.push({
       name: element.name,
       path: output
@@ -77,7 +77,7 @@ app.post('/generate', async (req, res) => {
 
   await browser.close();
 
- 
+
   const glyphs = [notdefGlyph];
   for (let i = 0; i < allFiles.length; i++) {
     const Alphabet = allFiles[i];
@@ -102,11 +102,11 @@ app.post('/generate', async (req, res) => {
     glyphs: glyphs
   });
   const timestamp = Date.now();
-  const baseFilename = font_name+"-"+font_style+"_"+timestamp+".otf";
+  const baseFilename = font_name + "-" + font_style + "_" + timestamp + ".otf";
 
-  font.download("./generated/"+baseFilename);
+  font.download("./generated/" + baseFilename);
   res.json({
-    "file_name":"/generated/"+baseFilename
+    "file_name": "/generated/" + baseFilename
   })
 })
 
