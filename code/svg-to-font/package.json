@@ -17,6 +17,8 @@
     "opentype": "^0.1.2",
     "opentype.js": "^1.3.4",
     "puppeteer": "^21.9.0",
+    "puppeteer-core": "^5.5.0",
+    "chrome-aws-lambda": "^8.0.0",
     "raphael": "^2.3.0",
     "react-raphael": "^0.9.0",
     "snapsvg": "^0.5.1"
