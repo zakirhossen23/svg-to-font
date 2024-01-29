@@ -2,9 +2,7 @@
 const opentype = require('opentype.js')
 var fs = require('fs');
 const Path = require('./js/OpenType/Path')
-const chrome = require('chrome-aws-lambda');
-
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const path = require('path');
 
 
@@ -37,12 +35,7 @@ app.post('/generate', async (req, res) => {
       }
   }
 
-  const browser = await puppeteer.launch({
-    executablePath: await chrome.executablePath,
-    args: chrome.args,
-    defaultViewport: chrome.defaultViewport,
-    headless: chrome.headless,
-  });
+  const browser = await puppeteer.launch({  executablePath: './bin/chrome', headless: "new", args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
 
   const notdefGlyph = new opentype.Glyph({

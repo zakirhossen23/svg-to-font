@@ -1,6 +1,24 @@
 {
     "version": 2,
-    "builds": [{ "src": "index.js",  "use": "@now/node" }],
-    "routes": [{ "src": "/(.*)", "dest": "/index.js" }]
-  }
-  
+    "builds": [
+        {
+            "src": "index.js",
+            "use": "@now/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/index.js"
+        }
+    ],
+    "functions": {
+        "api": {
+            "runtime": "vercel-node@2.6.1",
+            "memory": 1024
+        }
+    },
+    "env": {
+        "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true"
+    }
+}
