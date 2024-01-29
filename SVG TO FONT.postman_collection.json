@@ -20,7 +20,7 @@
 						}
 					}
 				},
-				"url": "localhost:3000/generate"
+				"url": "https://svg-to-font.replit.app/generate"
 			},
 			"response": []
 		}
