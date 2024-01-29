@@ -108,7 +108,7 @@
         let pathData = elm.getAttribute("d");
         let translate = elm.getAttribute("transform");
         if (translate == null) return pathData;
-        var translateValues = translate.match(/-?\d+/g);
+        var translateValues = translate.replaceAll("translate(","").replaceAll(")","").split(",");
 
         var tx = parseFloat(translateValues[0]);
         var ty = parseFloat(translateValues[1]);
