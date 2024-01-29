@@ -3,6 +3,7 @@ const opentype = require('opentype.js')
 var fs = require('fs');
 const Path = require('./js/OpenType/Path')
 const puppeteer = require('puppeteer');
+const path = require('path');
 
 
 const express = require('express')
