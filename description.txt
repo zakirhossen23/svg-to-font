@@ -160,3 +160,8 @@ for 1500 INR?
 
 TODAY
 ok
+
+
+ont name,Author name,Distance between words
+10:28 PM
+Character Width,Font Weight.
