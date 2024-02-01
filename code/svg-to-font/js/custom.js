@@ -140,3 +140,4 @@ if (typeof module != 'undefined'){
         createPath
     };
 }
+window.createPath = createPath

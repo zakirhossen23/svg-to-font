@@ -1,8 +1,9 @@
 
 const opentype = require('opentype.js')
-var fs = require('fs');
+const { JSDOM } = require('jsdom');
+const fs = require('fs');
+
 const Path = require('./js/OpenType/Path')
-const puppeteer = require('puppeteer');
 const path = require('path');
 
 
@@ -35,8 +36,6 @@ app.post('/generate', async (req, res) => {
     }
   }
 
-  const browser = await puppeteer.launch({ executablePath: './bin/chrome', headless: "new", args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-  const page = await browser.newPage();
 
   const notdefGlyph = new opentype.Glyph({
     name: '.notdef',
@@ -45,27 +44,30 @@ app.post('/generate', async (req, res) => {
     path: new opentype.Path()
   });
 
-  await page.goto('about:blank');
-  await page.addScriptTag({ path: './js/custom.js' });
-  await page.addScriptTag({ url: 'https://cdn.jsdelivr.net/npm/opentype.js' });
-  await page.addScriptTag({ url: 'https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js' });
-  await page.addScriptTag({ path: './js/raphaelv2.1.1.min.js' });
-  await page.addScriptTag({ path: './js/OpenType/bbox.js' });
-  await page.addScriptTag({ path: './js/OpenType/Path.js' });
-  await page.addScriptTag({ url: 'https://code.jquery.com/jquery-latest.min.js' });
+  // Load external scripts
+  const opentypeScript = fs.readFileSync('./js/opentype.js', 'utf-8');
+  const customScript = fs.readFileSync('./js/custom.js', 'utf-8');
+  const snapScript = fs.readFileSync('./js/snap.svg-min.js', 'utf-8');
+  const raphaelScript = fs.readFileSync('./js/raphaelv2.1.1.min.js', 'utf-8');
+  const bboxScript = fs.readFileSync('./js/OpenType/bbox.js', 'utf-8');
+  const pathScript = fs.readFileSync('./js/OpenType/Path.js', 'utf-8');
+  const jqueryScript = fs.readFileSync('./js/jquery-latest.min.js', 'utf-8');
+
 
   let allFiles = [];
 
   for (let i = 0; i < svgs.length; i++) {
     const element = svgs[i];
-    let output = await page.evaluate((element) => {
-      var newElm = document.createElement("svg")
-      newElm.innerHTML = element.code;
-
-      let path = createPath(newElm).toString();
-      return (path)
-
-    }, element);
+    const dom = new JSDOM(`<!DOCTYPE html><svg>${element.code}</svg>`, { runScripts: 'outside-only' });
+    dom.window.eval(opentypeScript);
+    dom.window.eval(customScript);
+    dom.window.eval(snapScript);
+    dom.window.eval(raphaelScript);
+    dom.window.eval(bboxScript);
+    dom.window.eval(pathScript);
+    dom.window.eval(jqueryScript);
+    const newElm = dom.window.document.querySelector('svg');
+    const output = dom.window.createPath(newElm).toString();
 
     allFiles.push({
       name: element.name,
@@ -75,7 +77,6 @@ app.post('/generate', async (req, res) => {
 
 
 
-  await browser.close();
 
 
   const glyphs = [notdefGlyph];
@@ -83,7 +84,6 @@ app.post('/generate', async (req, res) => {
     const Alphabet = allFiles[i];
     const elmPath = new Path();
     elmPath.fromSVG(Alphabet.path)
-    // more drawing instructions...
     const elmGlyph = new opentype.Glyph({
       name: Alphabet.name,
       unicode: Alphabet.name.charCodeAt(),
