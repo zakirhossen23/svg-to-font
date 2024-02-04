@@ -6,7 +6,7 @@ const fs = require('fs');
 const Path = require('./js/OpenType/Path')
 const path = require('path');
 const axios = require('axios');
-let server = "https://svg-to-font-six.vercel.app"
+const server = process.env.SERVER || "https://svg-to-font-six.vercel.app";
 
 const express = require('express')
 const app = express()
