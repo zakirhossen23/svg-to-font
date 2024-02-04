@@ -2,17 +2,25 @@
     "version": 2,
     "builds": [
         {
+            "src": "/**/*",
+            "use": "@vercel/static"
+        },
+        {
             "src": "index.js",
-            "use": "@now/node"
+            "use": "@vercel/node"
         }
     ],
     "routes": [
         {
+            "handle": "filesystem"
+        },
+        {
+            "src": "/js/(.*)",
+            "dest": "/public/js/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/index.js"
         }
-    ],
-    "env": {
-        "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true"
-    }
+    ]
 }

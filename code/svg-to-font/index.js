@@ -5,7 +5,8 @@ const fs = require('fs');
 
 const Path = require('./js/OpenType/Path')
 const path = require('path');
-
+const axios = require('axios');
+let server = "https://svg-to-font-six.vercel.app"
 
 const express = require('express')
 const app = express()
@@ -44,14 +45,37 @@ app.post('/generate', async (req, res) => {
     path: new opentype.Path()
   });
 
-  // Load external scripts
-  const opentypeScript = fs.readFileSync('./js/opentype.js', 'utf-8');
-  const customScript = fs.readFileSync('./js/custom.js', 'utf-8');
-  const snapScript = fs.readFileSync('./js/snap.svg-min.js', 'utf-8');
-  const raphaelScript = fs.readFileSync('./js/raphaelv2.1.1.min.js', 'utf-8');
-  const bboxScript = fs.readFileSync('./js/OpenType/bbox.js', 'utf-8');
-  const pathScript = fs.readFileSync('./js/OpenType/Path.js', 'utf-8');
-  const jqueryScript = fs.readFileSync('./js/jquery-latest.min.js', 'utf-8');
+
+
+// URLs for external scripts
+const opentypeUrl = server+'/js/opentype.js';
+const customUrl = server+'/js/custom.js'; // Replace with the actual URL
+const snapUrl = server+'/js/snap.svg-min.js';
+const raphaelUrl = server+'/js/raphaelv2.1.1.min.js';
+const bboxUrl = server+'/js/OpenType/bbox.js'; // Replace with the actual URL
+const pathUrl = server+'/js/OpenType/Path.js'; // Replace with the actual URL
+const jqueryUrl = server+'/js/jquery-latest.min.js';
+
+
+    // Function to fetch script content from a URL
+    async function fetchScript(url) {
+      try {
+        const response = await axios.get(url);
+        return response.data;
+      } catch (error) {
+        console.error(`Error fetching script from ${url}:`, error.message);
+        return null;
+      }
+    }
+
+    // Usage
+    const opentypeScript = await fetchScript(opentypeUrl);
+    const customScript = await fetchScript(customUrl);
+    const snapScript = await fetchScript(snapUrl);
+    const raphaelScript = await fetchScript(raphaelUrl);
+    const bboxScript = await fetchScript(bboxUrl);
+    const pathScript = await fetchScript(pathUrl);
+    const jqueryScript = await fetchScript(jqueryUrl);
 
 
   let allFiles = [];
@@ -104,10 +128,13 @@ app.post('/generate', async (req, res) => {
   const timestamp = Date.now();
   const baseFilename = font_name + "-" + font_style + "_" + timestamp + ".otf";
 
-  font.download("./generated/" + baseFilename);
-  res.json({
-    "file_name": "/generated/" + baseFilename
-  })
+   // Set appropriate headers for font file
+   res.setHeader('Content-Type', 'application/octet-stream');
+   res.setHeader('Content-Disposition', 'attachment; filename='+baseFilename);
+ 
+   // Send the font data directly in the response
+   res.send(Buffer.from(font.toArrayBuffer()));
+
 })
 
 app.listen(port, () => {
