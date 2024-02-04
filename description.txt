@@ -1,3 +1,23 @@
+https://www.transfernow.net/dl/svg-to-font
+
+Steps:
+1. downlaod and extract in a folder
+2. Then download and install github desktop https://desktop.github.com/
+3. Login with your github account on github desktop
+4. Then click add to existing repository, it will show you don't have repostiory then click create repostiory
+5. Then click push at the top bar
+6. Now open vercel
+7. click Add New > Project
+8. Select your github repo  and click import
+9. keep other things same as are those. just change install command to "npm i --legacy-peer-deps"
+10. You can edit the url there and then click build and deploy.
+11. It will automatically deploy your code
+12. You can click view porject then there will show your choosen vercel url. There you can view your project.
+
+
+
+
+
 hello
 
 Hi
