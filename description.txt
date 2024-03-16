@@ -1,3 +1,5 @@
+SVG TO FONT
+
 https://www.transfernow.net/dl/svg-to-font
 
 Steps:
@@ -10,9 +12,12 @@ Steps:
 7. click Add New > Project
 8. Select your github repo  and click import
 9. keep other things same as are those. just change install command to "npm i --legacy-peer-deps"
-10. You can edit the url there and then click build and deploy.
+10. You can edit the url there and then add environment variable: SERVER and then add your url as value.
+10.  and then click build and deploy.
 11. It will automatically deploy your code
 12. You can click view porject then there will show your choosen vercel url. There you can view your project.
+
+
 
 
 
